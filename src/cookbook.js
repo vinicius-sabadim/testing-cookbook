@@ -19,13 +19,13 @@ angular
 			}
 		};
 	})
-	// .factory('Artists', ['imageStore',
-	// 	function(imageStore) {
-	// 		// API
-	// 		return {
-	// 			thumb: function(id) {
-	// 				return imageStore.thumbnailUrl(id);
-	// 			}
-	// 		};
-	// 	}
-	// ]);
+	.factory('Artists', ['imageStore',
+		function(imageStore) {
+			// API
+			return {
+				thumb: function(id) {
+					return imageStore.thumbnailUrl(id);
+				}
+			};
+		}
+	]);
