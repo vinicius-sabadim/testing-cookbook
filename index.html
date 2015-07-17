@@ -5,10 +5,14 @@
 	<title>Document</title>
 
 	<script type="text/javascript" src="lib/angular.js"></script>
-	<script type="text/javascript" src="src/cookbook.js"></script>
+	<script type="text/javascript" src="src/modules.js"></script>
+	
+	<script type="text/javascript" src="src/controllers.js"></script>
+	<script type="text/javascript" src="src/directives.js"></script>
+	<script type="text/javascript" src="src/factories.js"></script>
 </head>
 <body>
-	<div ng-controller="MainCtrl">
+	<div data-ng-controller="MainCtrl">
 		Favourite member of the Juice Crew:
 		<input type="text" ng-model="emcee"><br>
 		Emcee: <span ng-bind="emcee"></span>
