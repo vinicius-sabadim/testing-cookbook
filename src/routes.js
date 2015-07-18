@@ -25,6 +25,9 @@ angular
 				templateUrl: 'home.html',
 				controller: 'HomeCtrl'
 			})
+			.state('emcees', {
+				url: '/emcees'
+			});
 		$urlRouterProvider
 			.otherwise('/home');
 	}

@@ -27,10 +27,7 @@ module.exports = function(config) {
 
 
         // list of files to exclude
-        exclude: [
-            'test/unit/route.js',
-            'test/unit/route-parameter.js'
-        ],
+        exclude: [],
 
 
         // preprocess matching files before serving them to the browser
