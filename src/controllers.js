@@ -13,4 +13,8 @@ angular
 		function($scope, $routeParams) {
 			$scope.id = $routeParams.id;
 		}
+	])
+	.controller('HomeCtrl', ['$scope',
+		function($scope) {
+		}
 	]);

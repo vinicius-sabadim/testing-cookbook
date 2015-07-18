@@ -22,7 +22,7 @@ angular
 		$stateProvider
 			.state('home', {
 				url: '/home',
-				templateUrl: 'home.html',
+				templateUrl: 'src/view/home.html',
 				controller: 'HomeCtrl'
 			})
 			.state('emcees', {

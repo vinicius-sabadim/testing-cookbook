@@ -43,7 +43,7 @@ describe('How to test navigation and routing', function() {
 
 		beforeEach(module('cookbook'));
 		beforeEach(inject(function($templateCache, $rootScope, $state) {
-			$templateCache.put('home.html', 'Some template content');
+			$templateCache.put('src/view/home.html', 'Some template content');
 			state = $state;
 		}));
 
@@ -56,7 +56,7 @@ describe('How to test navigation and routing', function() {
 				expect(state.current.controller).toEqual('HomeCtrl');
 			});
 			it('state templateUrl should be home.html', function() {
-				expect(state.current.templateUrl).toEqual('home.html');
+				expect(state.current.templateUrl).toEqual('src/view/home.html');
 			});
 		});
 
