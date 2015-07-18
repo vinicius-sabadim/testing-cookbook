@@ -7,10 +7,10 @@ describe('Routes', function() {
 		$rootScope.$apply();
 		route = $route;
 	}));
-	it('route controller should be mapped to HomeCtrl', inject(function() {
+	it('route controller should be mapped to HomeCtrl', function() {
 		expect(route.current.controller).toEqual('HomeCtrl');
-	}));
-	it('route templateUrl should be home.html', inject(function($rootScope, $location, $route) {
+	});
+	it('route templateUrl should be home.html', function() {
 		expect(route.current.templateUrl).toEqual('home.html');
-	}));
+	});
 });
