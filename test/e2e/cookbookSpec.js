@@ -26,4 +26,10 @@ describe('Roteamento', function() {
 		var button = element(by.buttonText('load'));
 		expect(button.isPresent()).toBeTruthy();
 	});
+
+	it('should navigate to emcees page on click of the load button', function () {
+		var button = element(by.buttonText('load'));
+		button.click();
+		expect(browser.getLocationAbsUrl()).toContain('/emcees');
+	});
 });

@@ -14,7 +14,9 @@ angular
 			$scope.id = $routeParams.id;
 		}
 	])
-	.controller('HomeCtrl', ['$scope',
-		function($scope) {
+	.controller('HomeCtrl', ['$scope', '$state', function($scope,
+		$state) {
+		$scope.loadEmcee = function(id) {
+			$state.go('emcees');
 		}
-	]);
+	}]);
