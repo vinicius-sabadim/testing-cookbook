@@ -17,7 +17,8 @@ module.exports = function(config) {
         files: [
             'lib/angular.js',
             'lib/angular-mocks.js',
-            'lib/angular-route.js',
+            // 'lib/angular-route.js',
+            'lib/ui-router.js',
             'src/modules.js',
             'src/routes.js',
             'src/**/*.js',
@@ -26,7 +27,10 @@ module.exports = function(config) {
 
 
         // list of files to exclude
-        exclude: [],
+        exclude: [
+            'test/unit/route.js',
+            'test/unit/route-parameter.js'
+        ],
 
 
         // preprocess matching files before serving them to the browser
