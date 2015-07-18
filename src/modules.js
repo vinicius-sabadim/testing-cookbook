@@ -1,2 +1,2 @@
 angular
-	.module('cookbook', []);
+	.module('cookbook', ['ngRoute']);
