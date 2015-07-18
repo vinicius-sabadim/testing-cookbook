@@ -38,15 +38,20 @@ describe('How to test navigation and routing', function() {
 	// });
 
 	describe('ui-router', function() {
+		var scope;
+		var state;
+
+		beforeEach(module('cookbook'));
+		beforeEach(inject(function($templateCache, $rootScope, $state) {
+			$templateCache.put('home.html', 'Some template content');
+			state = $state;
+		}));
 
 		describe('Routes', function() {
-			var state;
-			beforeEach(module('cookbook'));
-			beforeEach(inject(function($templateCache, $rootScope, $state) {
-				$templateCache.put('home.html', 'Some template content');
+			beforeEach(inject(function($rootScope) {
 				$rootScope.$apply();
-				state = $state;
 			}));
+
 			it('state controller should be mapped to HomeCtrl', function() {
 				expect(state.current.controller).toEqual('HomeCtrl');
 			});
@@ -56,16 +61,12 @@ describe('How to test navigation and routing', function() {
 		});
 
 		describe('Transition', function() {
-			var scope;
-			var state;
-			beforeEach(module('cookbook'));
-			beforeEach(inject(function($templateCache, $rootScope, $state) {
-				$templateCache.put('home.html', 'Some template content');
+			beforeEach(inject(function($rootScope) {
 				scope = $rootScope.$new();
-				state = $state;
+				$rootScope.$apply();
 			}));
+
 			it('default state should be home', function() {
-				scope.$apply();
 				expect(state.current.name).toEqual('home');
 			});
 		});
