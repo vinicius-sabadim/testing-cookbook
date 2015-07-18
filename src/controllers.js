@@ -8,4 +8,9 @@ angular
 		// $log.error('message');
 
 		$scope.emcee = 'Kool G Rap';
-	}]);
+	}])
+	.controller('EmceesCtrl', ['$scope', '$routeParams',
+		function($scope, $routeParams) {
+			$scope.id = $routeParams.id;
+		}
+	]);
