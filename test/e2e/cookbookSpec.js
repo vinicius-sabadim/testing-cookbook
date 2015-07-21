@@ -1,19 +1,3 @@
-// describe('Página inicial', function() {
-
-// 	describe('favourite rapper', function() {
-// 		it('should bind to input', function() {
-// 			browser.get('');
-// 			var emceeInput = element(by.model('emcee'));
-// 			var emceeOutput = element(by.binding('emcee'));
-// 			expect(emceeOutput.getText()).toBe('Kool G Rap');
-// 			emceeInput.clear();
-// 			emceeInput.sendKeys('Aesop Rock');
-// 			expect(emceeOutput.getText()).toBe('Aesop Rock');
-// 		});
-// 	});
-
-// });
-
 describe('Roteamento', function() {
 	beforeEach(function() {
 		browser.get('http://0.0.0.0:8000/');
@@ -36,5 +20,20 @@ describe('Roteamento', function() {
 	it('should redirect to home page if an unknown url is provided', function() {
 		browser.get('http://0.0.0.0:8000/#/dummy');
 		expect(browser.getLocationAbsUrl()).toContain('/home');
+	});
+
+	describe('Página inicial', function() {
+
+		describe('favourite rapper', function() {
+			it('should bind to input', function() {
+				var emceeInput = element(by.model('emcee'));
+				var emceeOutput = element(by.binding('emcee'));
+				expect(emceeOutput.getText()).toBe('Kool G Rap');
+				emceeInput.clear();
+				emceeInput.sendKeys('Aesop Rock');
+				expect(emceeOutput.getText()).toBe('Aesop Rock');
+			});
+		});
+
 	});
 });
