@@ -9,4 +9,21 @@ angular
 				};
 			}
 		};
+	})
+	.directive('writers', function() {
+		return {
+			restrict: 'E',
+			link: function(scope, element) {
+				element.text('Graffiti artist: ' + scope.artist);
+			}
+		};
+	})
+	.directive('emcees', function() {
+		return {
+			restrict: 'E',
+			templateUrl: 'src/view/template.html',
+			link: function(scope, element) {
+				scope.emcee = scope.emcees[0];
+			}
+		};
 	});
