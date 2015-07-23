@@ -21,9 +21,15 @@ angular
 	.directive('emcees', function() {
 		return {
 			restrict: 'E',
-			templateUrl: 'src/view/template.html',
+			templateUrl: 'src/view/emcees.html',
 			link: function(scope, element) {
 				scope.emcee = scope.emcees[0];
 			}
+		};
+	})
+	.directive('deejays', function() {
+		return {
+			restrict: 'E',
+			templateUrl: 'src/view/deejays.html'
 		};
 	});

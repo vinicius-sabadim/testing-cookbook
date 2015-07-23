@@ -44,20 +44,57 @@ describe('directive emcees', function() {
 	var element;
 	var template = '<h1>{{emcees[0]}}</h1>';
 	var emcees = ['Roxanne Shante', 'Mc Lyte'];
+	var h2;
 
 	beforeEach(module('cookbook'));
 	beforeEach(inject(function($rootScope, $compile, $templateCache) {
 		scope = $rootScope.$new();
 		scope.emcees = emcees;
 
-		$templateCache.put('src/view/template.html', template);
+		$templateCache.put('src/view/emcees.html', template);
 
 		element = angular.element('<emcees></emcees>');
 		$compile(element)(scope);
 		scope.$digest();
 	}));
+
 	it('should show the correct emcee', function() {
 		var h1 = element.find('h1');
 		expect(h1.text()).toBe(emcees[0]);
 	});
+
+});
+
+describe('directive emcees', function() {
+	var scope;
+	var element;
+	var template = '<h2>{{deejay.name}}</h2>';
+	var deejay = {
+		name: 'Shortee',
+		style: 'turntablism'
+	};
+	var h2;
+
+	beforeEach(module('cookbook'));
+	beforeEach(inject(function($rootScope, $compile, $templateCache) {
+		scope = $rootScope.$new();
+		scope.deejay = deejay;
+
+		$templateCache.put('src/view/deejays.html', template);
+
+		element = angular.element('<deejays></deejays>');
+		$compile(element)(scope);
+		scope.$digest();
+	}));
+
+	it('should return an element using find()', function() {
+		h2 = element.find('h2');
+		expect(h2[0]).toBeDefined();
+	});
+
+	it('should display correct deejay data in the DOM', function () {
+		h2 = element.find('h2');
+		expect(h2.html()).toBe(deejay.name);
+	});
+
 });
