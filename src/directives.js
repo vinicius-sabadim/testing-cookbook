@@ -32,4 +32,10 @@ angular
 			restrict: 'E',
 			templateUrl: 'src/view/deejays.html'
 		};
+	})
+	.directive('breakers', function() {
+		return {
+			restrict: 'E',
+			templateUrl: 'src/view/breakers.html'
+		};
 	});

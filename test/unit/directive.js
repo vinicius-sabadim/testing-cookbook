@@ -65,7 +65,7 @@ describe('directive emcees', function() {
 
 });
 
-describe('directive emcees', function() {
+describe('directive deejays', function() {
 	var scope;
 	var element;
 	var template = '<h2>{{deejay.name}}</h2>';
@@ -92,9 +92,51 @@ describe('directive emcees', function() {
 		expect(h2[0]).toBeDefined();
 	});
 
-	it('should display correct deejay data in the DOM', function () {
+	it('should display correct deejay data in the DOM', function() {
 		h2 = element.find('h2');
 		expect(h2.html()).toBe(deejay.name);
+	});
+
+});
+
+describe('directive breakers', function() {
+	var scope;
+	var element;
+	var template = '<ul><li ng-repeat="item in breakers">{{item.name}}</li></ul>';
+	var breakers = [{
+		name: 'China Doll'
+	}, {
+		name: 'Crazy Legs'
+	}, {
+		name: 'Frosty Freeze'
+	}];
+	var h2;
+
+	beforeEach(module('cookbook'));
+	beforeEach(inject(function($rootScope, $compile, $templateCache) {
+		scope = $rootScope.$new();
+		scope.breakers = breakers;
+
+		$templateCache.put('src/view/breakers.html', template);
+
+		element = angular.element('<breakers></breakers>');
+		$compile(element)(scope);
+		scope.$digest();
+	}));
+
+	it('should display the correct breaker name', function() {
+		var list = element.find('li');
+		expect(list.eq(0).text()).toBe('China Doll');
+	});
+
+	it('should display the correct breaker name', function() {
+		var list = element.find('li');
+		expect(list.eq(1).text()).toBe('Crazy Legs');
+	});
+
+	it('should display the correct breaker name', function() {
+		var list = element.find('li');
+		expect(list.eq(2).text()).toBe('Frosty Freeze');
 	});
 
 });
