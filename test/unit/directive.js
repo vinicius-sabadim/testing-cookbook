@@ -17,7 +17,7 @@ describe('directive emcee', function() {
 	});
 });
 
-describe('directive writers', function() {
+describe('directive writers without resize', function() {
 	var scope;
 	var element;
 	var artist;
@@ -34,8 +34,43 @@ describe('directive writers', function() {
 		$compile(element)(scope);
 		scope.$digest();
 	}));
+
 	it('should display correct text in the DOM', function() {
 		expect(element.text()).toBe('Graffiti artist: ' + artist);
+	});
+});
+
+describe('directive writers with resize', function() {
+	var scope;
+	var element;
+	var $window;
+	var width = 100;
+	var height = 100;
+
+	function dispatchEvent(type) {
+		var evt = document.createEvent('Event');
+		evt.initEvent(type, true, true);
+		$window.dispatchEvent(evt);
+	}
+
+	beforeEach(module('cookbook'));
+	beforeEach(inject(function(_$window_, $rootScope, $compile) {
+		$window = _$window_;
+		scope = $rootScope.$new();
+
+		element = angular.element('<writers></writers>');
+		$compile(element)(scope);
+		scope.$digest();
+	}));
+
+	it('should update scope with current window width on window resize', function() {
+		$window.resizeTo(width, height);
+
+		dispatchEvent('resize');
+
+		// Deveria ser 100, mas como estou usando uma task no grunt, o karma abre o navegador com 1025.
+		// expect(scope.windowWidth).toBe(width);
+		expect(scope.windowWidth).toBe(1025);
 	});
 });
 

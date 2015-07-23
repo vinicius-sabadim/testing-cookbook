@@ -10,11 +10,18 @@ angular
 			}
 		};
 	})
-	.directive('writers', function() {
+	.directive('writers', function($window) {
 		return {
 			restrict: 'E',
 			link: function(scope, element) {
 				element.text('Graffiti artist: ' + scope.artist);
+
+				function onResize(e) {
+					scope.windowWidth = $window.innerWidth;
+					scope.$digest();
+				}
+
+				angular.element($window).bind('resize', onResize);
 			}
 		};
 	})
