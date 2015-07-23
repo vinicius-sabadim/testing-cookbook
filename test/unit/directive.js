@@ -99,7 +99,7 @@ describe('directive deejays', function() {
 
 });
 
-describe('directive breakers', function() {
+describe('directive breakers without input', function() {
 	var scope;
 	var element;
 	var template = '<ul><li ng-repeat="item in breakers">{{item.name}}</li></ul>';
@@ -110,7 +110,6 @@ describe('directive breakers', function() {
 	}, {
 		name: 'Frosty Freeze'
 	}];
-	var h2;
 
 	beforeEach(module('cookbook'));
 	beforeEach(inject(function($rootScope, $compile, $templateCache) {
@@ -137,6 +136,45 @@ describe('directive breakers', function() {
 	it('should display the correct breaker name', function() {
 		var list = element.find('li');
 		expect(list.eq(2).text()).toBe('Frosty Freeze');
+	});
+});
+
+describe('directive breakers with input', function() {
+	var scope;
+	var element;
+	var template = '<input type="text" name="input" value="" ng-keypress="onSubmit($event)"><ul><li ng-repeat="item in breakers">{{item.name}}</li></ul>';
+	var breakers = [];
+
+	function $input() {
+		return element.children().eq(0);
+	}
+
+	beforeEach(module('cookbook'));
+	beforeEach(inject(function($rootScope, $controller, $compile, $templateCache) {
+		scope = $rootScope.$new();
+		scope.breakers = breakers;
+
+		$controller('HomeCtrl', {
+			$scope: scope
+		});
+
+		$templateCache.put('src/view/breakers.html', template);
+
+		element = angular.element('<breakers></breakers>');
+		$compile(element)(scope);
+		scope.$digest();
+	}));
+
+	it('should update breakers list with defined input value', function() {
+		$input().val('China Doll');
+
+		scope.onSubmit({
+			which: 13,
+			preventDefault: function() {},
+			target: $input()[0]
+		});
+
+		expect(scope.breakers[0].name).toBe('China Doll');
 	});
 
 });

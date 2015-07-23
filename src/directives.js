@@ -36,6 +36,16 @@ angular
 	.directive('breakers', function() {
 		return {
 			restrict: 'E',
-			templateUrl: 'src/view/breakers.html'
+			templateUrl: 'src/view/breakers.html',
+			link: function(scope) {
+				scope.onSubmit = function(event) {
+					if (event.which === 13) {
+						var input = event.target;
+						scope.breakers.push({
+							name: input.value
+						});
+					}
+				}
+			}
 		};
 	});
