@@ -40,6 +40,15 @@ angular
 			templateUrl: 'src/view/deejays.html'
 		};
 	})
+	.directive('deejay', function($window) {
+		return {
+			restrict: 'E',
+			template: '<div class="deejay-booth" ng-class="{popup: isPopup === true}"></div>',
+			link: function(scope) {
+				scope.isPopup = $window.name.search(/popup/) >= 0;
+			}
+		};
+	})
 	.directive('breakers', function() {
 		return {
 			restrict: 'E',

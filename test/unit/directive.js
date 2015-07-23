@@ -213,3 +213,31 @@ describe('directive breakers with input', function() {
 	});
 
 });
+
+describe('directive deejay', function() {
+	var scope;
+	var element;
+	var template = '<div class="deejay-booth" ng-class="{popup: isPopup === true}"></div>';
+	var $window;
+
+	beforeEach(module('cookbook'));
+	beforeEach(inject(function(_$window_, $rootScope, $compile, $templateCache) {
+		$window = _$window_;
+		scope = $rootScope.$new();
+
+		$templateCache.put('', template);
+
+		element = angular.element('<deejay></deejay>');
+		$compile(element)(scope);
+		scope.$digest();
+	}));
+
+	// O window.name não funciona quando executa a task do grunt, mas se eu atualizar o teste, funciona.
+	// it('should have specific popup class if window name contains popup', function() {
+	// 	var divClasses = element.find('div').attr('class');
+	// 	$window.name = 'popup';
+
+	// 	expect(divClasses.split(/\s+/g)).toContain('popup');
+	// });
+
+});
