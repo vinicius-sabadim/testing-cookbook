@@ -241,3 +241,23 @@ describe('directive deejay', function() {
 	// });
 
 });
+
+describe('directive jwplayer', function() {
+	var scope;
+	var element;
+
+	beforeEach(module('cookbook'));
+	beforeEach(inject(function($rootScope, $compile) {
+		scope = $rootScope.$new();
+
+		element = angular.element('<jwplayer></jwplayer>');
+		$compile(element)(scope);
+		scope.$digest();
+	}));
+
+	it('should update scope within callback', function() {
+		scope.readyHandler();
+		expect(scope.ready).toBeTruthy();
+	});
+
+});

@@ -21,4 +21,13 @@ angular
 				return 'breakbeat';
 			}
 		};
+	})
+	.factory('jwplayer', function() {
+		return function() {
+			return {
+				onReady: function(callback) {
+					return callback;
+				}
+			}
+		};
 	});

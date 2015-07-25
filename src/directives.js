@@ -68,4 +68,17 @@ angular
 				}
 			}
 		};
+	})
+	.directive('jwplayer', function(jwplayer) {
+		return {
+			restrict: 'EA',
+			link: function(scope, element) {
+				scope.ready = false;
+				jwplayer()
+					.onReady(scope.readyHandler);
+				scope.readyHandler = function() {
+					scope.ready = true;
+				}
+			}
+		};
 	});
