@@ -15,6 +15,8 @@ angular
 		}
 	])
 	.controller('HomeCtrl', ['$scope', '$state', function($scope, $state) {
+		$scope.UNKNOWN_NAME = 'Unknown emcee';
+
 		$scope.loadEmcee = function(id) {
 			$state.go('emcees');
 		};
@@ -22,4 +24,14 @@ angular
 		$scope.showWuEmcee = function(emceeName) {
 			$scope.$broadcast('showWuEmcee', emceeName);
 		};
+
+		$scope.onShowWuEmcee = function(e, emceeName) {
+			if (!emceeName) {
+				$scope.wuWho = $scope.UNKNOWN_NAME;
+				return;
+			}
+			$scope.wuWho = emceeName;
+		};
+
+		$scope.$on('showWuEmcee', $scope.onShowWuEmcee);
 	}]);
