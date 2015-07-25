@@ -25,6 +25,7 @@ describe('Roteamento', function() {
 	describe('Página inicial', function() {
 
 		describe('favourite rapper', function() {
+			
 			it('should bind to input', function() {
 				var emceeInput = element(by.model('emcee'));
 				var emceeOutput = element(by.binding('emcee'));
@@ -32,6 +33,20 @@ describe('Roteamento', function() {
 				emceeInput.clear();
 				emceeInput.sendKeys('Aesop Rock');
 				expect(emceeOutput.getText()).toBe('Aesop Rock');
+			});
+		});
+
+		describe('deejay directive', function() {
+			
+			it('should show content on page load', function () {
+				var deejayBooth = $('[ng-show=showBooth].deejay-booth');
+				expect(deejayBooth.isDisplayed()).toBeTruthy();
+			});
+
+			it('should hide content on button click', function () {
+				var deejayBooth = $('[ng-show=showBooth].deejay-booth');
+				$('.hide-btn').click();
+				expect(deejayBooth.isDisplayed()).toBeFalsy();
 			});
 		});
 

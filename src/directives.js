@@ -43,9 +43,13 @@ angular
 	.directive('deejay', function($window) {
 		return {
 			restrict: 'E',
-			template: '<div class="deejay-booth" ng-class="{popup: isPopup === true}"></div>',
+			template: '<div ng-show="showBooth" class="deejay-booth" ng-class="{popup: isPopup === true}"><h2 id="deejay_name">{{deejay.name}}</h2><p class="deejay-style">{{deejay.style}}</p><button class="hide-btn" ng-click="hideBooth()">Hide Booth</button></div>',
 			link: function(scope) {
 				scope.isPopup = $window.name.search(/popup/) >= 0;
+				scope.showBooth = true;
+				scope.hideBooth = function() {
+					scope.showBooth = false;
+				};
 			}
 		};
 	})
