@@ -123,4 +123,32 @@ describe('service emcees', function() {
 		});
 	});
 
+	describe('testing service data using mock helpers', function() {
+		var emcees;
+		var httpMock;
+		var $q;
+		var $scope;
+
+		beforeEach(module('cookbook', function($provide) {
+			httpMock = jasmine.createSpyObj('$http', ['get']);
+			$provide.value('$http', httpMock);
+		}));
+
+		beforeEach(inject(function($injector) {
+			emcees = $injector.get('emcees');
+			$q = $injector.get('$q');
+			$scope = $injector.get('$rootScope').$new();
+		}));
+
+		it('should store the response from the HTTP GET request', function() {
+			var defer = $q.defer();
+			var emcee = jasmine.mockData.emcee();
+			defer.resolve(emcee);
+			httpMock.get.and.returnValue(defer.promise);
+			emcees.getUKEmcee('1');
+			$scope.$digest();
+			expect(emcees.emcee.name).toBe(emcee.name);
+		});
+	});
+
 });
