@@ -1,7 +1,12 @@
 angular
 	.module('cookbook')
-	.service('emcees', function() {
+	.service('emcees', function($http) {
 		return {
-			getUKEmcees: function() {}
+			getUKEmcees: function() {
+				return $http.get('/emcees/uk');
+			},
+			addUKEmcee: function(emcee) {
+				return $http.post('/emcees/uk', emcee);
+			}
 		};
 	});
