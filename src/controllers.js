@@ -14,7 +14,7 @@ angular
 			$scope.id = $routeParams.id;
 		}
 	])
-	.controller('HomeCtrl', ['$scope', '$state', function($scope, $state) {
+	.controller('HomeCtrl', ['$scope', '$state', '$filter', function($scope, $state, $filter) {
 		$scope.UNKNOWN_NAME = 'Unknown emcee';
 
 		$scope.loadEmcee = function(id) {
@@ -32,6 +32,10 @@ angular
 			}
 			$scope.wuWho = emceeName;
 		};
+
+		$scope.doFilter = function() {
+			$scope.decimal = $filter('decimalAdjust')('round', $scope.decimal, -1);
+		}
 
 		$scope.$on('showWuEmcee', $scope.onShowWuEmcee);
 	}]);

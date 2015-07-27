@@ -25,7 +25,7 @@ describe('Roteamento', function() {
 	describe('Página inicial', function() {
 
 		describe('favourite rapper', function() {
-			
+
 			it('should bind to input', function() {
 				var emceeInput = element(by.model('emcee'));
 				var emceeOutput = element(by.binding('emcee'));
@@ -37,17 +37,30 @@ describe('Roteamento', function() {
 		});
 
 		describe('deejay directive', function() {
-			
-			it('should show content on page load', function () {
+
+			it('should show content on page load', function() {
 				var deejayBooth = $('[ng-show=showBooth].deejay-booth');
 				expect(deejayBooth.isDisplayed()).toBeTruthy();
 			});
 
-			it('should hide content on button click', function () {
+			it('should hide content on button click', function() {
 				var deejayBooth = $('[ng-show=showBooth].deejay-booth');
 				$('.hide-btn').click();
 				expect(deejayBooth.isDisplayed()).toBeFalsy();
 			});
+		});
+
+		describe('filter on user event', function() {
+
+			it('should display the correct decimal value', function() {
+				var button = element(by.buttonText('Filter'));
+				var decimalText = element(by.model('decimal'));
+				decimalText.clear();
+				decimalText.sendKeys('55.55');
+				button.click();
+				expect(decimalText.getAttribute('value')).toBe('55.6');
+			});
+
 		});
 
 	});
