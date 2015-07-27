@@ -81,4 +81,46 @@ angular
 				}
 			}
 		};
+	})
+	.directive('stopWatch', function(secondsToTimeFilter) {
+		return {
+			require: 'ngModel',
+			link: function(scope) {
+				var timerInterval;
+				var timerOffset;
+				scope.timer = {
+					current: 0,
+					running: false
+				};
+				scope.start = function() {
+					timerOffset = Date.now();
+					timerInterval = setInterval(scope.update, 10);
+				};
+				scope.update = function() {
+					scope.timer.current += scope.delta();
+					scope.$digest();
+				};
+				scope.stop = function() {
+					clearInterval(timerInterval);
+				};
+				scope.delta = function() {
+					var now = Date.now();
+					var delta = now - timerOffset;
+					timerOffset = now;
+					return delta;
+				};
+				// Listeners
+				scope.onStartTimer = function() {
+					scope.timer.running = !scope.timer.running;
+					if (scope.timer.running) {
+						scope.start();
+					} else {
+						scope.stop();
+					}
+				};
+				scope.onResetTimer = function() {
+					scope.timer.current = 0;
+				};
+			}
+		};
 	});
